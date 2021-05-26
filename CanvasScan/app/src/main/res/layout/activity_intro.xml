@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/intro_bg"
+    tools:context=".IntroActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ManCanvas_View"
+        android:layout_width="0dp"
+
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/man_on_canvas" />
+
+    <TextView
+        android:id="@+id/sloganView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/calligraffitti"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:shadowColor="#000000"
+        android:shadowDx="12"
+        android:shadowDy="12"
+        android:shadowRadius="8"
+        android:text="@string/app_slogan"
+        android:textColor="#f7f7f7"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ManCanvas_View" />
+
+    <TextView
+        android:id="@+id/slogan2_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/calligraffitti"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:shadowColor="#000000"
+        android:shadowDx="12"
+        android:shadowDy="12"
+        android:shadowRadius="8"
+        android:text="@string/app_slogan2"
+        android:textColor="#f7f7f7"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/Welcome_View"
+        app:layout_constraintStart_toStartOf="@+id/sloganView"
+        app:layout_constraintTop_toBottomOf="@+id/sloganView" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/Welcome_View"
+        android:layout_width="match_parent"
+
+        android:layout_height="250dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/welcome" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
