@@ -2,15 +2,11 @@
     <string name="app_name">Canvas Scan</string>
     <string name="app_slogan">The Only Canvas</string>
     <string name="app_slogan2">You Ever Need</string>
-    <string name="eraser_tool">Eraser</string>
-    <string name="save_tool">Save Drawing</string>
-    <string name="clear_Tool">Clear</string>
-    <string name="recognize_tools">Recognize</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="okay">Okay</string>
-    <string name="cancel">Cancel</string>
-    <string name="todo">TODO</string>
-    <string name="download_tool">Download</string>
-    <string name="delete_tool">Delete Model</string>
+
+    <string name="status_view">Status text…</string>
+    <string name="delete_buttin">Delete model</string>
+    <string name="download_button">Download</string>
+    <string name="clear_button">Clear</string>
+    <string name="recognize_button">Recognize</string>
+    <string name="draw_circle_button">Draw Circle</string>
 </resources>

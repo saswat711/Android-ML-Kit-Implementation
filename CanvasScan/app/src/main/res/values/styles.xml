@@ -1,7 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.Translucy" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-</resources>
+<resources></resources>

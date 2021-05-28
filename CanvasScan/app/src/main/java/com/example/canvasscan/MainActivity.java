@@ -3,6 +3,7 @@ package com.example.canvasscan;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
   @VisibleForTesting final com.example.canvasscan.StrokeManager strokeManager = new com.example.canvasscan.StrokeManager();
   private ArrayAdapter<ModelLanguageContainer> languageAdapter;
 
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -43,10 +45,16 @@ public class MainActivity extends AppCompatActivity
 
     Spinner languageSpinner = findViewById(R.id.languages_spinner);
 
+    //Setting Full Screen View
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
     com.example.canvasscan.DrawingView drawingView = findViewById(R.id.drawing_view);
-    StatusTextView statusTextView = findViewById(R.id.status_text_view);
+    com.example.canvasscan.StatusTextView statusTextView = findViewById(R.id.status_text_view);
     drawingView.setStrokeManager(strokeManager);
     statusTextView.setStrokeManager(strokeManager);
+
+
 
     strokeManager.setStatusChangedListener(statusTextView);
     strokeManager.setContentChangedListener(drawingView);
@@ -99,6 +107,13 @@ public class MainActivity extends AppCompatActivity
     strokeManager.deleteActiveModel();
   }
 
+  public void on_Circle(View v) {
+    StatusTextView statusTextView = findViewById(R.id.status_text_view);
+    statusTextView.setText("Draw a line  Now on The Canvas and a circle of equivalent radius will appear");
+    DrawingView drawingView = findViewById(R.id.drawing_view);
+    drawingView.drawCircle(true);
+  }
+
   private static class ModelLanguageContainer implements Comparable<ModelLanguageContainer> {
     private final String label;
     @Nullable private final String languageTag;
@@ -123,6 +138,7 @@ public class MainActivity extends AppCompatActivity
       return new ModelLanguageContainer(label, null);
     }
 
+    @org.jetbrains.annotations.Nullable
     public String getLanguageTag() {
       return languageTag;
     }

@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.canvasscan.databinding.ActivityIntroBinding;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class IntroActivity extends AppCompatActivity {
    ActivityIntroBinding binding;
     private final String log_tag = "Saswat";
@@ -32,17 +35,18 @@ public class IntroActivity extends AppCompatActivity {
         Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.blink);
         binding.slogan2View.startAnimation(anim2);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(log_tag,"will send to main-activity after 3500ms");
-
-                Intent intent = (new Intent(IntroActivity.this, MainActivity.class));
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(IntroActivity.this).toBundle());
-                finishAffinity();
-
-            }
-        }, 3500);
+        Timer = new Timer();
+        Timer.schedule(new TimerTask() {
+                           @Override
+                           public void run() {
+                               Log.d(log_tag,"sent to main activity after 3500ms");
+                               Intent intent = (new Intent(IntroActivity.this, MainActivity.class));
+                               startActivity(intent);
+                               overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                               finish();
+                           }
+                       },
+                3500);
 
 
     }

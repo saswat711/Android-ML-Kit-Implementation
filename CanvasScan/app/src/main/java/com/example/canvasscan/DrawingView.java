@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -16,8 +18,9 @@ import android.view.View;
 import com.example.canvasscan.StrokeManager.ContentChangedListener;
 import com.google.mlkit.vision.digitalink.Ink;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.lang.Math;
 /**
  * Main view for rendering content.
  *
@@ -40,7 +43,10 @@ public class DrawingView extends View implements ContentChangedListener {
   private final Path currentStroke;
   private Canvas drawCanvas;
   private Bitmap canvasBitmap;
+  public Boolean toCircle = false;
   private com.example.canvasscan.StrokeManager strokeManager;
+  private final ArrayList<Float>xpoints= new ArrayList<>();
+  private final ArrayList<Float>ypoints= new ArrayList<>();
 
   public DrawingView(Context context) {
     this(context, null);
@@ -105,6 +111,7 @@ public class DrawingView extends View implements ContentChangedListener {
   void setStrokeManager(com.example.canvasscan.StrokeManager strokeManager) {
     this.strokeManager = strokeManager;
   }
+
 
   @Override
   protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
@@ -179,6 +186,8 @@ public class DrawingView extends View implements ContentChangedListener {
         canvasBitmap.getHeight(),
         canvasBitmap.getWidth(),
         canvasBitmap.getHeight());
+    toCircle=false;
+    strokeManager.setStatus("Draw Anything");
   }
 
   @Override
@@ -187,22 +196,40 @@ public class DrawingView extends View implements ContentChangedListener {
     canvas.drawPath(currentStroke, currentStrokePaint);
   }
 
+
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     int action = event.getActionMasked();
     float x = event.getX();
     float y = event.getY();
-
     switch (action) {
+
       case MotionEvent.ACTION_DOWN:
+        xpoints.add(x);
+        ypoints.add(y);
         currentStroke.moveTo(x, y);
           break;
+
       case MotionEvent.ACTION_MOVE:
+        xpoints.add(x);
+        ypoints.add(y);
         currentStroke.lineTo(x, y);
           break;
+
       case MotionEvent.ACTION_UP:
+        xpoints.add(x);
+        ypoints.add(y);
         currentStroke.lineTo(x, y);
         drawCanvas.drawPath(currentStroke, currentStrokePaint);
+        if(toCircle){
+          currentStrokePaint.setColor(0xFFF7F7F7);
+          drawCanvas.drawPath(currentStroke, currentStrokePaint);
+          currentStrokePaint.setColor(0xFFFF00FF);
+          float radius = (float) Math.sqrt(Math.pow(xpoints.get(xpoints.size()-1)-xpoints.get(0),2)+Math.pow(ypoints.get(ypoints.size()-1)-ypoints.get(0),2));
+          drawCanvas.drawCircle(xpoints.get(0),ypoints.get(0),radius,currentStrokePaint);
+        }
+        xpoints.clear();
+        ypoints.clear();
         currentStroke.reset();
           break;
       default:
@@ -210,11 +237,17 @@ public class DrawingView extends View implements ContentChangedListener {
     }
     strokeManager.addNewTouchEvent(event);
     invalidate();
+
     return true;
   }
 
   @Override
   public void onContentChanged() {
     redrawContent();
+  }
+
+
+  public void drawCircle(boolean b) {
+    toCircle = b;
   }
 }

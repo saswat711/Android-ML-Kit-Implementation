@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/start_layout"
+    android:id="@+id/startLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/intro_bg"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ManCanvas_View" />
 
     <TextView
-        android:id="@+id/slogan2_view"
+        android:id="@+id/slogan2View"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"

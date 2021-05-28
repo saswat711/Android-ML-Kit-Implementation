@@ -6,9 +6,10 @@
     <com.example.canvasscan.DrawingView
         android:id="@+id/drawing_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#80FFFFFF" />
+        android:background="#F7F7F7" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,59 +18,81 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <com.example.canvasscan.StatusTextView
                 android:id="@+id/status_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Status text..."
+                android:background="@drawable/edittext_style"
+                android:text="@string/status_view"
                 android:textIsSelectable="true" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
+
                 <Button
-                    android:id="@+id/download_button"
-                    android:layout_width="0dp"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:backgroundTint="#2196F3"
                     android:onClick="downloadClick"
-                    android:text="Download" />
+                    android:text="@string/download_button"
+                    android:textSize="12sp" />
+
                 <Button
-                    android:id="@+id/recognize_button"
-                    android:layout_width="0dp"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:backgroundTint="@color/teal_700"
                     android:onClick="recognizeClick"
-                    android:text="Recognize" />
+                    android:text="@string/recognize_button"
+                    android:textSize="12sp"/>
+
                 <Button
-                    android:id="@+id/clear_button"
-                    android:layout_width="0dp"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:backgroundTint="#2196F3"
                     android:onClick="clearClick"
-                    android:text="Clear" />
+                    android:text="@string/clear_button"
+                    android:textSize="12sp"/>
+
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_700"
+                    android:onClick="on_Circle"
+                    android:text="@string/draw_circle_button"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal">
+
             <Spinner
                 android:id="@+id/languages_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3" />
+
             <Button
-                android:id="@+id/delete_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_red_light"
                 android:onClick="deleteClick"
-                android:text="Delete model" />
+                android:text="@string/delete_buttin" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

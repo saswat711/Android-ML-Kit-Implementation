@@ -14,6 +14,7 @@ import com.google.mlkit.vision.digitalink.Ink.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /** Manages the recognition logic and the content that has been added to the current page. */
@@ -46,7 +47,8 @@ public class StrokeManager {
   private static final int TIMEOUT_TRIGGER = 1;
   // For handling recognition and model downloading.
   private RecognitionTask recognitionTask = null;
-  @VisibleForTesting ModelManager modelManager = new ModelManager();
+  @VisibleForTesting
+  final ModelManager modelManager = new ModelManager();
   // Managing the recognition queue.
   private final List<RecognitionTask.RecognizedInk> content = new ArrayList<>();
   // Managing ink currently drawn.
@@ -88,7 +90,7 @@ public class StrokeManager {
             return false;
           });
 
-  private void setStatus(String newStatus) {
+  void setStatus(String newStatus) {
     status = newStatus;
     if (statusChangedListener != null) {
       statusChangedListener.onStatusChanged();
@@ -97,7 +99,7 @@ public class StrokeManager {
   private void commitResult() {
     if (recognitionTask.done() && recognitionTask.result() != null) {
       content.add(recognitionTask.result());
-      setStatus("Successful recognition: " + recognitionTask.result().text);
+      setStatus("Successful recognition: " + Objects.requireNonNull(recognitionTask.result()).text);
       if (clearCurrentInkAfterRecognition) {
         resetCurrentInk();
       }
@@ -168,16 +170,16 @@ public class StrokeManager {
   }
 
   // Listeners to update the drawing and status.
-  public void setContentChangedListener(ContentChangedListener contentChangedListener) {
+  public void setContentChangedListener(@org.jetbrains.annotations.Nullable ContentChangedListener contentChangedListener) {
     this.contentChangedListener = contentChangedListener;
   }
 
-  public void setStatusChangedListener(StatusChangedListener statusChangedListener) {
+  public void setStatusChangedListener(@org.jetbrains.annotations.Nullable StatusChangedListener statusChangedListener) {
     this.statusChangedListener = statusChangedListener;
   }
 
   public void setDownloadedModelsChangedListener(
-      DownloadedModelsChangedListener downloadedModelsChangedListener) {
+          @org.jetbrains.annotations.Nullable DownloadedModelsChangedListener downloadedModelsChangedListener) {
     this.downloadedModelsChangedListener = downloadedModelsChangedListener;
   }
 
