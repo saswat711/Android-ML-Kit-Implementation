@@ -6,7 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/intro_bg"
-    tools:context=".IntroActivity">
+    tools:context="com.ocr.canvasscan.IntroActivity">
+
+    <ImageButton
+        android:id="@+id/btRoundArrow"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_round_arrow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/slogan2View"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/slogan2View"
+        app:layout_constraintTop_toBottomOf="@+id/ManCanvas_View"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/ManCanvas_View"

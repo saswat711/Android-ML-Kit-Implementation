@@ -1,4 +1,4 @@
-package com.example.canvasscan;
+package com.ocr.canvasscan;
 
 import android.os.Handler;
 import android.util.Log;

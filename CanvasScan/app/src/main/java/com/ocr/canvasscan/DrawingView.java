@@ -1,12 +1,10 @@
-package com.example.canvasscan;
+package com.ocr.canvasscan;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -15,7 +13,6 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.canvasscan.StrokeManager.ContentChangedListener;
 import com.google.mlkit.vision.digitalink.Ink;
 
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ import java.lang.Math;
  * <p>The view accepts touch inputs, renders them on screen, and passes the content to the
  * StrokeManager. The view is also able to draw content from the StrokeManager.
  */
-public class DrawingView extends View implements ContentChangedListener {
+public class DrawingView extends View implements StrokeManager.ContentChangedListener {
   private static final String TAG = "MLKD.DrawingView";
   private static final int STROKE_WIDTH_DP = 3;
   private static final int MIN_BB_WIDTH = 10;
@@ -44,7 +41,7 @@ public class DrawingView extends View implements ContentChangedListener {
   private Canvas drawCanvas;
   private Bitmap canvasBitmap;
   public Boolean toCircle = false;
-  private com.example.canvasscan.StrokeManager strokeManager;
+  private StrokeManager strokeManager;
   private final ArrayList<Float>xpoints= new ArrayList<>();
   private final ArrayList<Float>ypoints= new ArrayList<>();
 
@@ -108,7 +105,7 @@ public class DrawingView extends View implements ContentChangedListener {
     return bb;
   }
 
-  void setStrokeManager(com.example.canvasscan.StrokeManager strokeManager) {
+  void setStrokeManager(StrokeManager strokeManager) {
     this.strokeManager = strokeManager;
   }
 

@@ -1,4 +1,4 @@
-package com.example.canvasscan;
+package com.ocr.canvasscan;
 
 import org.junit.Test;
 

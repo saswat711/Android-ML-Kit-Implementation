@@ -1,4 +1,4 @@
-package com.example.canvasscan;
+package com.ocr.canvasscan;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.canvasscan.R;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
-import com.example.canvasscan.StrokeManager.DownloadedModelsChangedListener;
 import com.google.mlkit.vision.digitalink.DigitalInkRecognitionModelIdentifier;
 
 import java.util.Locale;
@@ -24,7 +24,7 @@ import java.util.Set;
 
 /** Main activity which creates a StrokeManager and connects it to the DrawingView. */
 public class MainActivity extends AppCompatActivity
-    implements DownloadedModelsChangedListener {
+    implements StrokeManager.DownloadedModelsChangedListener {
   private static final String TAG = "MLKDI.Activity";
   private static final ImmutableMap<String, String> NON_TEXT_MODELS =
       ImmutableMap.of(
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
           "Emoji",
           "zxx-Zsym-x-shapes",
           "Shapes");
-  @VisibleForTesting final com.example.canvasscan.StrokeManager strokeManager = new com.example.canvasscan.StrokeManager();
+  @VisibleForTesting final StrokeManager strokeManager = new StrokeManager();
   private ArrayAdapter<ModelLanguageContainer> languageAdapter;
 
 
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-    com.example.canvasscan.DrawingView drawingView = findViewById(R.id.drawing_view);
-    com.example.canvasscan.StatusTextView statusTextView = findViewById(R.id.status_text_view);
+    DrawingView drawingView = findViewById(R.id.drawing_view);
+    StatusTextView statusTextView = findViewById(R.id.status_text_view);
     drawingView.setStrokeManager(strokeManager);
     statusTextView.setStrokeManager(strokeManager);
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
   public void clearClick(View v) {
     strokeManager.reset();
-    com.example.canvasscan.DrawingView drawingView = findViewById(R.id.drawing_view);
+    DrawingView drawingView = findViewById(R.id.drawing_view);
     drawingView.clear();
   }
 
